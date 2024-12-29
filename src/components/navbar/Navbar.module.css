@@ -1,0 +1,79 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 16px;
+    box-shadow: 0 1px 3px -2px black;
+}
+
+.logoConatiner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.title {
+    color: #171717;
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.searchContainer{
+    border: 1px solid rgb(173, 167, 167);
+    width: 40%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    border-radius:15px ;
+    align-items: center;
+}
+
+.searchContainer input{
+    border: 1px solid black;
+    width: 90%;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    letter-spacing: 1px;
+    height: 100%;
+}
+
+.cartConatiner {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+    cursor: pointer;
+}
+
+.loginBtn {
+    width: 157px;
+    height: 58px;
+    outline: none;
+    border: 1px solid #7a7a7a;
+    border-radius: 75px;
+    color: #515151;
+    font-size: 20px;
+    font-weight: 500;
+    background: white;
+    cursor: pointer;
+}
+
+.loginBtn:hover {
+    background: #f3f3f3;
+}
+
+.cartCount {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -35px;
+    margin-left: -55px;
+    border-radius: 14px;
+    background: red;
+    color: white;
+}
+
