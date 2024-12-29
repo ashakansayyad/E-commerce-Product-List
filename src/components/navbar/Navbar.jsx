@@ -1,8 +1,14 @@
-import React from "react";
+import React,{useState,useContext} from "react";
 import styles from "./Navbar.module.css";
 import { logo, cart_icon } from "../../assets/index";
 import { IoSearch } from "react-icons/io5";
+import { ProductsContext } from "../../context/productsContext";
+
+
 function Navbar() {
+    const {setIsSearchByName} = useContext(ProductsContext);
+    
+
   return (
     <div className={styles.navbar}>
       <div className={styles.logoConatiner}>
@@ -12,7 +18,8 @@ function Navbar() {
       <div className={styles.searchContainer}>
         <IoSearch style={{fontSize:"25px"}} />
         <input type="text" 
-        placeholder='Search Products...'
+        placeholder='Search products by name eg.phone,laptop'
+        onChange={(e)=>setIsSearchByName(e.target.value)}
         />
       </div>
       <div className={styles.cartConatiner}>
