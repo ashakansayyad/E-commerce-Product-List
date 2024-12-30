@@ -7,6 +7,8 @@ import right_arrow from './arrow.png';
 import instagram_icon from './instagram_icon.png';
 import pinterest_icon from './pintester_icon.png';
 import whatsapp_icon from './whatsapp_icon.png';
+import banner_mens from './banner_mens.png';
+
 
 export {
     cart_icon,
@@ -17,5 +19,6 @@ export {
     right_arrow,
     instagram_icon,
     pinterest_icon,
-    whatsapp_icon
+    whatsapp_icon,
+    banner_mens
 }

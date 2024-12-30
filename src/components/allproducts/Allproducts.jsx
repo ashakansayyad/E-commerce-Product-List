@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./Allproducts.module.css";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { getAllProducts, getAllCategories, getProductsByCategory, searchProductsByName } from "../../apis/index";
+import {useNavigate} from 'react-router-dom';
 import { ProductsContext } from "../../context/productsContext";
 
 function Allproducts() {
@@ -10,6 +11,7 @@ function Allproducts() {
     const { isSearchByName } = useContext(ProductsContext)
     const [isOpen, setIsOpen] = useState(false);  //for dropdown list
     const [selectedCategory, setSelectedCategory] = useState(null)
+    const navigate = useNavigate();
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
@@ -57,6 +59,9 @@ function Allproducts() {
         toggleDropdown();
     }
 
+    const handleNavigate = (id)=>{
+        navigate(`/details/${id}`);
+    }
  
     useEffect(() => {
         // call function at mounting phase
@@ -88,6 +93,7 @@ function Allproducts() {
                     products.map((item) => (
                         <div 
                         className={styles.itemContainer} 
+                        onClick={()=>handleNavigate(item.id)}
                         key={item.id}
                         >
                             <img src={item.thumbnail} />
