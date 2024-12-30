@@ -3,46 +3,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #D9EAFD;
     gap: 50px;
 }
 
-.footer_logo {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.footer_logo p {
-    color: #383838;
-    font-size: 46px;
-    font-weight: 700;
-}
-
-.footer_links {
-    display: flex;
-    list-style: none;
-    gap: 50px;
-    color: #252525;
-    font-size: 20px;
-}
-
-.footer_links li {
-    cursor: pointer;
-}
-
-.footer_social_icon {
-    display: flex;
-    gap: 20px;
-}
-
-.footer_icons_container {
-    padding: 10px;
-    cursor: pointer;
-    padding-bottom: 6px;
-    background: #fbfbfb;
-    border: 1px solid #ebebeb;
-}
 
 .footer_copyright {
     display: flex;

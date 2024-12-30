@@ -2,19 +2,7 @@
     width: 100%;
     height: auto;
 }
-.details .bannerConatiner{
-    display: flex;
-    width: 100%;
-    margin: 2rem 0;
-    padding: 0 10px;
-    justify-content: center;
-    align-items: center;
-}
-.bannerConatiner img{
-   width: auto;
-   height: 300px;
-   cursor: pointer;
-}
+
 .productdisplay{
     display: flex;
     margin: 2rem 170px;

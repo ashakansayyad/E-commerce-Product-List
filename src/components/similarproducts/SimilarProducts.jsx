@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./SimilarProducts.module.css";
 import { getProductsByCategory } from "../../apis/index";
 import { useNavigate } from "react-router-dom";
-import { FaSortAmountDown, FaStar } from "react-icons/fa";
+import { FaSortAmountDown,FaSortAmountUp, FaStar } from "react-icons/fa";
 
 function SimilarProducts({ category }) {
   const [similarProducts, setSimilarProducts] = useState([]); //store produts in state
@@ -27,6 +27,9 @@ function SimilarProducts({ category }) {
     const sortedProducts = [...similarProducts]; //make copy of products
     if (option === "priceLowToHigh") {
       sortedProducts.sort((a, b) => a.price - b.price); //sort by price (low to high)
+    } else if (option === "priceHighToLow") {
+      sortedProducts.sort((a, b) => b.price - a.price); //sort by price (high to low)
+    
     } else if (option === "ratingHighToLow") {
       sortedProducts.sort((a, b) => b.rating - a.rating); //sort by ratings (high to low)
     }
@@ -48,8 +51,15 @@ function SimilarProducts({ category }) {
             className={selectedBtn === "priceLowToHigh" ? styles.active : ""}
             onClick={() => handleSortProducts("priceLowToHigh")}
           >
-            <FaSortAmountDown className={styles.icon} /> Sort by Price (Low to
+            <FaSortAmountUp className={styles.icon} /> Sort by Price (Low to
             High)
+          </button>
+          <button
+            className={selectedBtn === "priceHighToLow" ? styles.active : ""}
+            onClick={() => handleSortProducts("priceHighToLow")}
+          >
+            <FaSortAmountDown className={styles.icon} /> Sort by Price (High to
+            Low)
           </button>
           <button
             className={selectedBtn === "ratingHighToLow" ? styles.active : ""}

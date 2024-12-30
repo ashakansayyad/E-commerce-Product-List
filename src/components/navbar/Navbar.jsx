@@ -6,7 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import { ProductsContext } from "../../context/productsContext";
 
 
-function Navbar() {
+function Navbar({isDetails}) {
     const {setIsSearchByName} = useContext(ProductsContext);
     const navigate = useNavigate();
 
@@ -33,8 +33,10 @@ function Navbar() {
       onClick={()=>navigate('/')}
       className={styles.logoConatiner}>
         <img className={styles.logo} src={logo} alt="logo" />
-        <h2 className={styles.title}>SHOPPER</h2>
+        <h2 className={styles.title}>MY SHOP</h2>
       </div>
+      {
+        !isDetails ? (
       <div className={styles.searchContainer}>
         <IoSearch style={{fontSize:"25px"}} />
         <input type="text" 
@@ -42,8 +44,12 @@ function Navbar() {
         onChange={(e)=>handleDebounceSearch(e.target.value)}  //pass the value in debounce function
         />
       </div>
+
+        ) : (
+          ""
+        )
+      }
       <div className={styles.cartConatiner}>
-        <button className={styles.loginBtn}>Login</button>
         <img 
         onClick={()=>navigate('/cart')}
         className={styles.cartIcon} src={cart_icon} alt="cart_icon" />

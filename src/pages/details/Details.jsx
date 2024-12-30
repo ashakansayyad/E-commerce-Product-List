@@ -5,7 +5,7 @@ import Footer from  '../../components/footer/Footer';
 import DescriptionBox from "../../components/descriptionbox/DescriptionBox";
 import styles from "./Details.module.css";
 import { getSingleProduct } from "../../apis/index";
-import { banner_mens } from "../../assets";
+
 import SimilarProducts from "../../components/similarproducts/SimilarProducts";
 function Details() {
   const [productById, setProductById] = useState({});
@@ -29,10 +29,8 @@ function Details() {
   }, [id]);
   return (
     <div className={styles.details}>
-      <Navbar />
-      <div className={styles.bannerConatiner}>
-        <img src={banner_mens} alt="img" />
-      </div>
+      <Navbar isDetails = {true}/>
+     
       {isLoading ? (
         <div className={styles.loader}>
           <svg className={styles.svg} viewBox="25 25 50 50">
