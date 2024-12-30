@@ -8,28 +8,28 @@ function Allproducts() {
     const [products, setProducts] = useState([]); //store produts in state
     const [categories, setCategories] = useState([]); //store categories in state
     const { isSearchByName } = useContext(ProductsContext)
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);  //for dropdown list
     const [selectedCategory, setSelectedCategory] = useState(null)
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
-    console.log("search data: ", isSearchByName);
+  
     // fetch all products
     const fetchProducts = async () => {
         try {
-            if (isSearchByName) {
+            if (isSearchByName) {         //products by name 
                 const res = await searchProductsByName(isSearchByName);
                 if (res && res.data) {
                     setProducts(res.data.products);
                 }
 
-            } else if (selectedCategory) {
+            } else if (selectedCategory) {  //products by category
                 const res = await getProductsByCategory(selectedCategory);
                 if (res && res.data) {
                     setProducts(res.data.products);
                 }
             } else {
-                const res = await getAllProducts();
+                const res = await getAllProducts();  // default fetch all products
                 if (res && res.data) {
                     setProducts(res.data.products);
                 }
@@ -39,6 +39,7 @@ function Allproducts() {
         }
     };
 
+    // fetch all categories
     const fetchCategories = async () => {
         try {
             const res = await getAllCategories();
@@ -56,11 +57,7 @@ function Allproducts() {
         toggleDropdown();
     }
 
-    const debounceProducts = () => {
-
-    }
-
-    const debounceSearchProducts = debounceProducts()
+ 
     useEffect(() => {
         // call function at mounting phase
         fetchProducts();
@@ -89,7 +86,10 @@ function Allproducts() {
             <div className={styles.allproductsContainer}>
                 {products.length > 0 ? (
                     products.map((item) => (
-                        <div className={styles.itemContainer} key={item.id}>
+                        <div 
+                        className={styles.itemContainer} 
+                        key={item.id}
+                        >
                             <img src={item.thumbnail} />
                             <h3>{item.title}</h3>
                             <p id={styles.price}>Price : ${item.price}</p>
@@ -99,7 +99,7 @@ function Allproducts() {
                     ))
                 ) : (
                     <div className={styles.loader}>
-                        <svg viewBox="25 25 50 50">
+                        <svg className={styles.svg} viewBox="25 25 50 50">
                             <circle r="20" cy="50" cx="50"></circle>
                             <p>Loading...</p>
                         </svg>

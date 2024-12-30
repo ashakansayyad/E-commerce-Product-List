@@ -4,6 +4,7 @@ import Navbar from '../../components/navbar/Navbar';
 import Bannerone from '../../components/bannerone/Bannerone';
 import Footer from '../../components/footer/Footer';
 import Allproducts from '../../components/allproducts/Allproducts';
+
 function Home() {
     return (
         <div className={styles.home}>
