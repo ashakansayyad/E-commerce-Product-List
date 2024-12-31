@@ -5,19 +5,22 @@ import Footer from "../../components/footer/Footer";
 import { CartContext } from "../../context/cartContext";
 
 function Cart() {
-  const { cartItems, removeCartItem, totalAmount,addToCart ,decrementCartItem } = useContext(CartContext);
+  const {
+    cartItems,
+    removeCartItem,
+    totalAmount,
+    addToCart,
+    decrementCartItem,
+  } = useContext(CartContext);   //get fnctions from context
 
   return (
     <div className={styles.cart}>
-   
-      <Navbar isDetails={true} />
-      
-    
+      <Navbar isDetails={true} />  
+
       <div className={styles.cartContainer}>
         {cartItems.length > 0 ? (
           <div className={styles.cartTableContainer}>
             <table className={styles.cartTable}>
-              {/* Table Header */}
               <thead>
                 <tr>
                   <th>Product</th>
@@ -28,8 +31,7 @@ function Cart() {
                   <th>Remove</th>
                 </tr>
               </thead>
-              
-           
+
               <tbody>
                 {cartItems.map((item) => (
                   <tr key={item.id}>
@@ -43,7 +45,7 @@ function Cart() {
                     <td>{item.title}</td>
                     <td>${item.price.toFixed(2)}</td>
                     <td>
-                    <div className={styles.quantityControls}>
+                      <div className={styles.quantityControls}>
                         <button
                           className={styles.decrementButton}
                           onClick={() => decrementCartItem(item.id)}
@@ -51,7 +53,9 @@ function Cart() {
                         >
                           -
                         </button>
-                        <span className={styles.quantityDisplay}>{item.quantity}</span>
+                        <span className={styles.quantityDisplay}>
+                          {item.quantity}
+                        </span>
                         <button
                           className={styles.incrementButton}
                           onClick={() => addToCart(item)}
@@ -59,7 +63,7 @@ function Cart() {
                           +
                         </button>
                       </div>
-                      </td>
+                    </td>
                     <td>${(item.price * item.quantity).toFixed(2)}</td>
                     <td>
                       <button
@@ -71,7 +75,7 @@ function Cart() {
                     </td>
                   </tr>
                 ))}
-           
+
                 <tr className={styles.totalRow}>
                   <td colSpan="6" className={styles.totalAmount}>
                     Total Amount: ${totalAmount.toFixed(2)}
@@ -88,7 +92,6 @@ function Cart() {
         )}
       </div>
 
-   
       <Footer />
     </div>
   );

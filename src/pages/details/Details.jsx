@@ -1,7 +1,7 @@
-import React, { useState, useEffect,useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
-import Footer from  '../../components/footer/Footer';
+import Footer from "../../components/footer/Footer";
 import DescriptionBox from "../../components/descriptionbox/DescriptionBox";
 import styles from "./Details.module.css";
 import { CartContext } from "../../context/cartContext";
@@ -12,8 +12,9 @@ import SimilarProducts from "../../components/similarproducts/SimilarProducts";
 function Details() {
   const [productById, setProductById] = useState({});
   const [isLoading, setIsloading] = useState(true);
-    const {addToCart} = useContext(CartContext);
-  const { id } = useParams();
+  const { addToCart } = useContext(CartContext);
+  const { id } = useParams();    //get product id from url
+
   const fetchSingleProduct = async () => {
     try {
       const res = await getSingleProduct(id);
@@ -27,19 +28,18 @@ function Details() {
     }
   };
 
-const handleCart = ()=>{
-    addToCart(productById)
+  const handleCart = () => {
+    addToCart(productById);
     toast.success(`${productById.title} added to cart successfully!`);
-  }
-
+  };
 
   useEffect(() => {
     fetchSingleProduct();
   }, [id]);
   return (
     <div className={styles.details}>
-      <Navbar isDetails = {true}/>
-     
+      <Navbar isDetails={true} />
+
       {isLoading ? (
         <div className={styles.loader}>
           <svg className={styles.svg} viewBox="25 25 50 50">
@@ -49,56 +49,51 @@ const handleCart = ()=>{
         </div>
       ) : (
         <>
-        <div className={styles.productdisplay}>
-          <div className={styles.productdisplay_left}>
-            <div className={styles.productdisplay_img}>
-              <img
-                className={styles.productdisplay_main_img}
-                src={productById.images?.[0]}
-                alt="img"
-              />
-            </div>
-          </div>
-          <div className={styles.productdisplay_right}>
-            <h1>{productById.title}</h1>
-            <div className={styles.productdisplay_right_stars}>
-              <p>
-                <span>Ratings : </span> {productById.rating}
-              </p>
-            </div>
-            <div className={styles.productdisplay_right_prices}>
-              <div className={styles.productdisplay_right_price}>
-                ${productById.price}
-              </div>
-
-              <div className={styles.productdisplay_right_discount}>
-                Discount : {productById.discountPercentage}%
+          <div className={styles.productdisplay}>
+            <div className={styles.productdisplay_left}>
+              <div className={styles.productdisplay_img}>
+                <img
+                  className={styles.productdisplay_main_img}
+                  src={productById.images?.[0]}
+                  alt="img"
+                />
               </div>
             </div>
-            <div className={styles.productdisplay_right_description}>
-              {productById.description}
-            </div>
-            <button
-            onClick={handleCart}
-            >ADD TO CART</button>
-            <div>
-              <p className={styles.productdisplay_right_category}>
-                <span>Categoty:</span> {productById.category}
-              </p>
-              {productById.brand && (
-                <p className={styles.productdisplay_right_category}>
-                  <span>Brand:</span> {productById.brand}
+            <div className={styles.productdisplay_right}>
+              <h1>{productById.title}</h1>
+              <div className={styles.productdisplay_right_stars}>
+                <p>
+                  <span>Ratings : </span> {productById.rating}
                 </p>
-              )}
+              </div>
+              <div className={styles.productdisplay_right_prices}>
+                <div className={styles.productdisplay_right_price}>
+                  ${productById.price}
+                </div>
+
+                <div className={styles.productdisplay_right_discount}>
+                  Discount : {productById.discountPercentage}%
+                </div>
+              </div>
+              <div className={styles.productdisplay_right_description}>
+                {productById.description}
+              </div>
+              <button onClick={handleCart}>ADD TO CART</button>
+              <div>
+                <p className={styles.productdisplay_right_category}>
+                  <span>Categoty:</span> {productById.category}
+                </p>
+                {productById.brand && (
+                  <p className={styles.productdisplay_right_category}>
+                    <span>Brand:</span> {productById.brand}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-
-        </div>
-            <DescriptionBox productDetails={productById}/>
-        <SimilarProducts 
-        category={productById.category}
-        />
-        <Footer/>
+          <DescriptionBox productDetails={productById} />  //pass current pId to description component
+          <SimilarProducts category={productById.category} />
+          <Footer />
         </>
       )}
     </div>

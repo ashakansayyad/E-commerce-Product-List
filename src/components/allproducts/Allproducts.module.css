@@ -84,7 +84,7 @@
   color: rgb(255, 255, 255);
   height: 30px;
   cursor: pointer;
-  background-color:#5CB338;
+  background-color: #5cb338;
 }
 
 .itemContainer #details {
@@ -112,7 +112,8 @@
   position: relative;
 }
 
-.categoriesTitle , .sortTitle{
+.categoriesTitle,
+.sortTitle {
   height: 100%;
   width: 20%;
   display: flex;
@@ -203,6 +204,6 @@
   align-items: center;
   flex-direction: column;
   gap: 5px;
-  width:100%;
+  width: 100%;
   height: 100%;
 }

@@ -1,83 +1,83 @@
-.descriptionbox{
-    margin: 10px 170px;
+.descriptionbox {
+  margin: 10px 170px;
 }
-.descriptionbox_navigator{
-    display: flex;
+.descriptionbox_navigator {
+  display: flex;
 }
-.descriptionbox_nav_box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 600;
-    width: 171px;
-    height: 70px;
-    cursor: pointer;
-    border: 1px solid #d0d0d0;
+.descriptionbox_nav_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  width: 171px;
+  height: 70px;
+  cursor: pointer;
+  border: 1px solid #d0d0d0;
 }
-.descriptionbox_nav_box_fade{
-    background: #fbfbfb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 171px;
-    height: 70px;
-    border: 1px solid #d0d0d0;
-    color: #555;
+.descriptionbox_nav_box_fade {
+  background: #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 171px;
+  height: 70px;
+  border: 1px solid #d0d0d0;
+  color: #555;
 }
-.descriptionbox_description{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    border: 1px solid #d0d0d0;
-    padding: 48px;
-    padding-bottom: 70px;
+.descriptionbox_description {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border: 1px solid #d0d0d0;
+  padding: 48px;
+  padding-bottom: 70px;
 }
-.descriptionbox_description p span{
-    font-weight: 600;
+.descriptionbox_description p span {
+  font-weight: 600;
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .descriptionbox {
-        margin: 60px 20px; /* Reduced margin on smaller screens */
-    }
+  .descriptionbox {
+    margin: 60px 20px; /* Reduced margin on smaller screens */
+  }
 
-    .descriptionbox_navigator {
-        flex-direction: column; /* Stack the navigation vertically */
-        align-items: stretch; /* Stretch to fit the container */
-    }
+  .descriptionbox_navigator {
+    flex-direction: column; /* Stack the navigation vertically */
+    align-items: stretch; /* Stretch to fit the container */
+  }
 
-    .descriptionbox_nav_box,
-    .descriptionbox_nav_box_fade {
-        width: 100%; /* Make navigation buttons full width */
-        height: 50px; /* Adjust height for smaller screens */
-    }
+  .descriptionbox_nav_box,
+  .descriptionbox_nav_box_fade {
+    width: 100%; /* Make navigation buttons full width */
+    height: 50px; /* Adjust height for smaller screens */
+  }
 
-    .descriptionbox_description {
-        padding: 24px; /* Reduce padding */
-    }
+  .descriptionbox_description {
+    padding: 24px; /* Reduce padding */
+  }
 }
 
 @media (max-width: 480px) {
-    .descriptionbox {
-        margin: 30px 10px; /* Further reduce margin */
-    }
+  .descriptionbox {
+    margin: 30px 10px; /* Further reduce margin */
+  }
 
-    .descriptionbox_navigator {
-        flex-direction: column; /* Stack vertically for very small screens */
-    }
+  .descriptionbox_navigator {
+    flex-direction: column; /* Stack vertically for very small screens */
+  }
 
-    .descriptionbox_nav_box,
-    .descriptionbox_nav_box_fade {
-        font-size: 14px; /* Smaller font size for smaller devices */
-        height: 40px; /* Further adjust height */
-    }
+  .descriptionbox_nav_box,
+  .descriptionbox_nav_box_fade {
+    font-size: 14px; /* Smaller font size for smaller devices */
+    height: 40px; /* Further adjust height */
+  }
 
-    .descriptionbox_description {
-        padding: 16px; /* Further reduce padding */
-    }
+  .descriptionbox_description {
+    padding: 16px; /* Further reduce padding */
+  }
 }

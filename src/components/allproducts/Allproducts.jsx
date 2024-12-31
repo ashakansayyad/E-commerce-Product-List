@@ -16,12 +16,12 @@ function Allproducts() {
   const [products, setProducts] = useState([]); //store produts in state
   const [categories, setCategories] = useState([]); //store categories in state
   const { isSearchByName } = useContext(ProductsContext);
-  const {addToCart} = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false); //for dropdown list
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSort, setSelectedSort] = useState(null);
   const [isSortDropdownOpen, setIsSortDropDownOpen] = useState(false);
-  
+
   const navigate = useNavigate();
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -72,6 +72,7 @@ function Allproducts() {
     setSelectedCategory(item);
     toggleDropdown();
   };
+
   const handleSortClick = (option) => {
     const sortedProducts = [...products]; //make copy of products
     if (option === "priceLowToHigh") {
@@ -85,20 +86,22 @@ function Allproducts() {
     setSelectedSort(option);
     toggleSortDropdoen();
   };
+
   const handleNavigate = (id) => {
     navigate(`/details/${id}`);
   };
 
-  const handleCart = (product)=>{
-    addToCart(product)
+  const handleCart = (product) => {
+    addToCart(product);
     toast.success(`${product.title} added to cart successfully!`);
-  }
+  };
 
+  // call function at mounting phase
   useEffect(() => {
-    // call function at mounting phase
     fetchProducts();
     fetchCategories();
   }, [selectedCategory, isSearchByName]);
+
   return (
     <div className={styles.allproducts}>
       <h2>New Collections</h2>
@@ -126,7 +129,7 @@ function Allproducts() {
             : selectedSort === "priceHighToLow"
             ? "Price ( high to low )"
             : selectedSort === "ratingHighToLow"
-            ? "Ratings ( low to high )"
+            ? "Ratings ( high to low )"
             : " Sort products by "}{" "}
           {!isSortDropdownOpen ? <SlArrowDown /> : <SlArrowUp />}
         </p>
@@ -156,7 +159,7 @@ function Allproducts() {
               <p onClick={() => handleNavigate(item.id)} id={styles.details}>
                 view details...
               </p>
-              <button onClick={()=>handleCart(item)}>ADD TO CART</button>
+              <button onClick={() => handleCart(item)}>ADD TO CART</button>
             </div>
           ))
         ) : (
