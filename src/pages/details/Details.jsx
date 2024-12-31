@@ -91,7 +91,7 @@ function Details() {
               </div>
             </div>
           </div>
-          <DescriptionBox productDetails={productById} />  //pass current pId to description component
+          <DescriptionBox productDetails={productById} />  
           <SimilarProducts category={productById.category} />
           <Footer />
         </>
