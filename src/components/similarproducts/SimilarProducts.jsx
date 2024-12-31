@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext} from "react";
 import styles from "./SimilarProducts.module.css";
 import { getProductsByCategory } from "../../apis/index";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/cartContext";
+import { toast } from "react-toastify";
 import { FaSortAmountDown,FaSortAmountUp, FaStar } from "react-icons/fa";
 
 function SimilarProducts({ category }) {
   const [similarProducts, setSimilarProducts] = useState([]); //store produts in state
   const [selectedBtn, setSelectedBtn] = useState();
+   const {addToCart} = useContext(CartContext);
   const navigate = useNavigate();
+  
   const fetchProducts = async () => {
     try {
       const res = await getProductsByCategory(category);
@@ -22,7 +26,10 @@ function SimilarProducts({ category }) {
   const handleNavigate = (id) => {
     navigate(`/details/${id}`);
   };
-
+ const handleCart = (product)=>{
+    addToCart(product)
+    toast.success(`${product.title} added to cart successfully!`);
+  }
   const handleSortProducts = (option) => {
     const sortedProducts = [...similarProducts]; //make copy of products
     if (option === "priceLowToHigh") {
@@ -77,11 +84,15 @@ function SimilarProducts({ category }) {
                 key={item.id}
               >
                 <img src={item.thumbnail} />
-                <h3>{item.title}</h3>
-                <p id={styles.price}>Price : ${item.price}</p>
-                <p id={styles.ratings}>Ratings : {item.rating}</p>
-                <p id={styles.category}>Category: {item.category}</p>
-              </div>
+               <h3>{item.title}</h3>
+                             <p id={styles.price}>Price : ${item.price}</p>
+                             <p id={styles.ratings}>Ratings : {item.rating}</p>
+                             <p id={styles.category}>Category: {item.category}</p>
+                             <p onClick={() => handleNavigate(item.id)} id={styles.details}>
+                               view details...
+                             </p>
+                             <button onClick={()=>handleCart(item)}>ADD TO CART</button>
+                           </div>
             ))
           ) : (
             <div className={styles.loader}>

@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { logo, cart_icon } from "../../assets/index";
 import { IoSearch } from "react-icons/io5";
 import { ProductsContext } from "../../context/productsContext";
+import { CartContext } from "../../context/cartContext";
 
 
 function Navbar({isDetails}) {
     const {setIsSearchByName} = useContext(ProductsContext);
+    const { totalItems} = useContext(CartContext);
     const navigate = useNavigate();
 
    // debouncing for searching products
@@ -25,7 +27,7 @@ function Navbar({isDetails}) {
     const handleDebounceSearch = useCallback(  
       debounceProducts((value)=>{
         setIsSearchByName(value)
-      },2000),[]
+      },1000),[]
     )
   return (
     <div className={styles.navbar}>
@@ -53,7 +55,7 @@ function Navbar({isDetails}) {
         <img 
         onClick={()=>navigate('/cart')}
         className={styles.cartIcon} src={cart_icon} alt="cart_icon" />
-        <div className={styles.cartCount}>0</div>
+        <div className={styles.cartCount}>{ totalItems}</div>
       </div>
     </div>
   );

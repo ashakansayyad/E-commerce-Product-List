@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext} from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from  '../../components/footer/Footer';
 import DescriptionBox from "../../components/descriptionbox/DescriptionBox";
 import styles from "./Details.module.css";
+import { CartContext } from "../../context/cartContext";
+import { toast } from "react-toastify";
 import { getSingleProduct } from "../../apis/index";
 
 import SimilarProducts from "../../components/similarproducts/SimilarProducts";
 function Details() {
   const [productById, setProductById] = useState({});
   const [isLoading, setIsloading] = useState(true);
+    const {addToCart} = useContext(CartContext);
   const { id } = useParams();
   const fetchSingleProduct = async () => {
     try {
@@ -23,6 +26,12 @@ function Details() {
       setIsloading(false);
     }
   };
+
+const handleCart = ()=>{
+    addToCart(productById)
+    toast.success(`${productById.title} added to cart successfully!`);
+  }
+
 
   useEffect(() => {
     fetchSingleProduct();
@@ -69,7 +78,9 @@ function Details() {
             <div className={styles.productdisplay_right_description}>
               {productById.description}
             </div>
-            <button>ADD TO CART</button>
+            <button
+            onClick={handleCart}
+            >ADD TO CART</button>
             <div>
               <p className={styles.productdisplay_right_category}>
                 <span>Categoty:</span> {productById.category}

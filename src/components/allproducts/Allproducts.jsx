@@ -1,23 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./Allproducts.module.css";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { ProductsContext } from "../../context/productsContext";
+import { CartContext } from "../../context/cartContext";
 import {
   getAllProducts,
   getAllCategories,
   getProductsByCategory,
   searchProductsByName,
 } from "../../apis/index";
-import { useNavigate } from "react-router-dom";
-import { ProductsContext } from "../../context/productsContext";
 
 function Allproducts() {
   const [products, setProducts] = useState([]); //store produts in state
   const [categories, setCategories] = useState([]); //store categories in state
   const { isSearchByName } = useContext(ProductsContext);
+  const {addToCart} = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false); //for dropdown list
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSort, setSelectedSort] = useState(null);
   const [isSortDropdownOpen, setIsSortDropDownOpen] = useState(false);
+  
   const navigate = useNavigate();
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -85,6 +89,11 @@ function Allproducts() {
     navigate(`/details/${id}`);
   };
 
+  const handleCart = (product)=>{
+    addToCart(product)
+    toast.success(`${product.title} added to cart successfully!`);
+  }
+
   useEffect(() => {
     // call function at mounting phase
     fetchProducts();
@@ -147,7 +156,7 @@ function Allproducts() {
               <p onClick={() => handleNavigate(item.id)} id={styles.details}>
                 view details...
               </p>
-              <button>ADD TO CART</button>
+              <button onClick={()=>handleCart(item)}>ADD TO CART</button>
             </div>
           ))
         ) : (
